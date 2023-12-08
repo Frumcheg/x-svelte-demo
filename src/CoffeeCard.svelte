@@ -21,6 +21,7 @@
 <script lang="ts">
   import Pill from "src/Pill.svelte";
   import { onMount } from "svelte";
+  import ScrollContainer from "src/ScrollContainer.svelte";
 
   export let data: CoffeeData;
   export let id: number
@@ -42,13 +43,13 @@
     <div class="origin">{origin}</div>
     <div class="name">{blend_name}</div>
     <div class="variety">{variety}</div>
-    <div class="scroll-container">
+    <ScrollContainer cssClass="pills-wrapper">
       <div class="pills">
         {#each notes.split(", ") as item}
           <Pill name={item}/>
         {/each}
       </div>
-    </div>
+    </ScrollContainer>
   </div>
 </div>
 
@@ -91,11 +92,10 @@
     overflow-y: hidden;
   }
 
-  .scroll-container {
+  :global(.pills-wrapper) {
     height: 23px;
     margin-right: -16px;
     margin-bottom: -2px;
-    overflow: hidden;
   }
 
   .origin {
