@@ -1,19 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { initIdleTracker } from "src/activityTracker.svelte";
+  import CoffeeCard, { CoffeeData } from "src/CoffeeCard.svelte";
+  import Button from "src/Button.svelte";
 
   type Status = "idle" | "loading" | "success" | "error"
   let status: Status = "idle";
-
-  interface CoffeeData {
-    "id": number,
-    "uid": string,
-    "blend_name": string,
-    "origin": string,
-    "variety": string,
-    "notes": string,
-    "intensifier": string
-  }
 
   const api = {
     getCoffee: async (): Promise<CoffeeData> => {
@@ -41,32 +33,47 @@
   });
 </script>
 
-<main>
-  <h1>Get Coffee!</h1>
+<main class="section">
+  <h1 class="title">Get Coffee!</h1>
   <div>
     {#each data as item}
-      <div>{item.blend_name}</div>
+      <CoffeeCard data={item}/>
     {/each}
-    <button on:click={loadItem}>Load one more</button>
+    {#if status === "loading"}
+      <div>Loading...</div>
+    {:else}
+      <Button onclick={loadItem}/>
+    {/if}
   </div>
 </main>
 
 <style lang="less">
-  main {
+  :global(body) {
+    padding: 0;
+  }
+
+  .section {
+    background-color: #050038;
     text-align: center;
-    padding: 1em;
     max-width: 240px;
     margin: 0 auto;
-
-    h1 {
-      color: #ff3e00;
-      text-transform: uppercase;
-      font-size: 4em;
-      font-weight: 100;
-    }
+    padding: 32px;
+    min-height: 100vh;
 
     @media (min-width: 640px) {
       max-width: none;
     }
   }
+
+  .title {
+    color: #ff3e00;
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 100;
+    padding-bottom: 32px;
+  }
 </style>
+
+<svelte:head>
+  <link rel="stylesheet" href="https://unpkg.com/the-new-css-reset@1.11.2/css/reset.css"/>
+</svelte:head>
