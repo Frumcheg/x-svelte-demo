@@ -39,11 +39,7 @@
     {#each data as item}
       <CoffeeCard data={item}/>
     {/each}
-    {#if status === "loading"}
-      <div>Loading...</div>
-    {:else}
-      <Button onclick={loadItem}/>
-    {/if}
+    <Button onclick={loadItem} loading={status === "loading"}/>
   </div>
 </main>
 
@@ -55,14 +51,9 @@
   .section {
     background-color: #050038;
     text-align: center;
-    max-width: 240px;
     margin: 0 auto;
     padding: 32px;
     min-height: 100vh;
-
-    @media (min-width: 640px) {
-      max-width: none;
-    }
   }
 
   .title {

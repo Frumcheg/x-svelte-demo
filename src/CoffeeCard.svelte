@@ -42,7 +42,7 @@
 
 <style lang="less">
   .card {
-    width: 300px;
+    max-width: 300px;
     margin: 0 auto 20px;
     position: relative;
     border-radius: 8px;

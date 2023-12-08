@@ -1,8 +1,9 @@
 <script lang="ts">
   export let onclick: (e: MouseEvent) => void;
+  export let loading: boolean;
 </script>
 
-<button class="button" on:click={onclick}>+</button>
+<button class="button" class:loading={loading} on:click={onclick} disabled={loading}/>
 
 <style lang="less">
   .button {
@@ -13,5 +14,38 @@
     height: 48px;
     color: #fff;
     cursor: pointer;
+
+    &::before {
+      content: '+';
+      line-height: 32px;
+      font-size: 32px;
+      margin-top: -7px;
+      display: block;
+    }
+
+    &:hover {
+      background: #d23f1e;
+      transition: background-color 0.3s;
+    }
+  }
+
+  .loading {
+    animation-name: rotation;
+    transform-origin: center;
+    animation-duration: 600ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
   }
 </style>
