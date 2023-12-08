@@ -1,28 +1,30 @@
 <script lang="ts" context="module">
     let isInited = false
     const callbacks = [];
+    const delay = 30 * 1000; // 30s
     function fireCallbacks() {
       callbacks.forEach((callback) => {
         callback();
       });
+      setupTimer()
     }
 
     const eventsOfInterest = ["click", "touch", "focus"]
-    let timer: ReturnType<typeof setTimeout>;
-    function eventHandler() {
+    let timer = setTimeout(fireCallbacks, delay);
+    function setupTimer() {
       clearTimeout(timer);
-      timer = setTimeout(fireCallbacks, 30 * 1000);
+      timer = setTimeout(fireCallbacks, delay);
     }
 
     function subscribe() {
       eventsOfInterest.forEach((event) => {
-        window.addEventListener(event, eventHandler)
+        window.addEventListener(event, setupTimer)
       })
     }
 
     function unsubscribe() {
       eventsOfInterest.forEach((event) => {
-        window.removeEventListener(event, eventHandler)
+        window.removeEventListener(event, setupTimer)
       })
     }
 

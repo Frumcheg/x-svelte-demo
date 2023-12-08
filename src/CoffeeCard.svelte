@@ -10,20 +10,32 @@
   }
 
   const IMG_URL = "https://loremflickr.com/500/500/coffee_bean"
+
+  let cardId = 1
+
+  export function nextId() {
+    return cardId++
+  }
 </script>
 
 <script lang="ts">
   import Pill from "src/Pill.svelte";
+  import { onMount } from "svelte";
 
   export let data: CoffeeData;
+  export let id: number
   const { blend_name, origin, variety, intensifier, notes } = data;
+
+  onMount(() => {
+    document.getElementById(`card-${id}`)?.scrollIntoView({ behavior: "smooth" })
+  })
 </script>
 
-<div class="card">
+<div class="card" id={`card-${id}`}>
   <div class="intensifier">{intensifier}</div>
   <img
     class="image"
-    src={IMG_URL}
+    src={`${IMG_URL}?lock=${id}`}
     alt={blend_name}
   />
   <div class="content">

@@ -27,6 +27,11 @@
       background: #d23f1e;
       transition: background-color 0.3s;
     }
+
+    &:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ef4724;
+    }
   }
 
   .loading {
