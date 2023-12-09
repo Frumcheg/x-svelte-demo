@@ -1,34 +1,23 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import { initIdleTracker } from "src/activityTracker.svelte";
+  import { initIdleTracker } from "src/idleTracker";
   import CoffeeCard, { CoffeeData } from "src/CoffeeCard.svelte";
   import Button from "src/Button.svelte";
+  import { getCoffee } from "src/api";
 
-  type Status = "idle" | "loading" | "success" | "error";
+  type Status = "idle" | "loading";
   let status: Status = "idle";
-
-  const api = {
-    getCoffee: async (): Promise<CoffeeData> => {
-      const res = await fetch(
-        "https://random-data-api.com/api/coffee/random_coffee",
-      );
-      return await res.json();
-    },
-  };
   let data: CoffeeData[] = [];
 
   function loadItem() {
     if (status === "loading") return;
     status = "loading";
-    api.getCoffee().then(
+    getCoffee().then(
       (item) => {
         data.push(item);
         data = data;
-        status = "success";
-      },
-      () => {
-        status = "error";
-      },
+        status = "idle";
+      }
     );
   }
 
@@ -56,10 +45,6 @@
 </svelte:head>
 
 <style lang="less">
-  :global(body) {
-    padding: 0;
-  }
-
   .section {
     background-color: #050038;
     text-align: center;
