@@ -4,12 +4,14 @@
   import CoffeeCard, { CoffeeData, nextId } from "src/CoffeeCard.svelte";
   import Button from "src/Button.svelte";
 
-  type Status = "idle" | "loading" | "success" | "error"
+  type Status = "idle" | "loading" | "success" | "error";
   let status: Status = "idle";
 
   const api = {
     getCoffee: async (): Promise<CoffeeData> => {
-      const res = await fetch("https://random-data-api.com/api/coffee/random_coffee");
+      const res = await fetch(
+        "https://random-data-api.com/api/coffee/random_coffee",
+      );
       return await res.json();
     },
   };
@@ -18,13 +20,16 @@
   function loadItem() {
     if (status === "loading") return;
     status = "loading";
-    api.getCoffee().then((item) => {
-      data.push(item);
-      data = data
-      status = "success";
-    }, () => {
-      status = "error";
-    });
+    api.getCoffee().then(
+      (item) => {
+        data.push(item);
+        data = data;
+        status = "success";
+      },
+      () => {
+        status = "error";
+      },
+    );
   }
 
   onMount(() => {
@@ -37,11 +42,18 @@
   <h1 class="title">Get Coffee!</h1>
   <div>
     {#each data as item}
-      <CoffeeCard data={item} id={nextId()}/>
+      <CoffeeCard data={item} id={nextId()} />
     {/each}
-    <Button onclick={loadItem} loading={status === "loading"}/>
+    <Button onclick={loadItem} loading={status === "loading"} />
   </div>
 </main>
+
+<svelte:head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/the-new-css-reset@1.11.2/css/reset.css"
+  />
+</svelte:head>
 
 <style lang="less">
   :global(body) {
@@ -64,7 +76,3 @@
     padding-bottom: 32px;
   }
 </style>
-
-<svelte:head>
-  <link rel="stylesheet" href="https://unpkg.com/the-new-css-reset@1.11.2/css/reset.css"/>
-</svelte:head>

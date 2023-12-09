@@ -1,20 +1,20 @@
 <script lang="ts" context="module">
   export interface CoffeeData {
-    "id": number,
-    "uid": string,
-    "blend_name": string,
-    "origin": string,
-    "variety": string,
-    "notes": string,
-    "intensifier": string
+    id: number;
+    uid: string;
+    blend_name: string;
+    origin: string;
+    variety: string;
+    notes: string;
+    intensifier: string;
   }
 
-  const IMG_URL = "https://loremflickr.com/500/500/coffee_bean"
+  const IMG_URL = "https://loremflickr.com/500/500/coffee_bean";
 
-  let cardId = 1
+  let cardId = 1;
 
   export function nextId() {
-    return cardId++
+    return cardId++;
   }
 </script>
 
@@ -24,21 +24,19 @@
   import ScrollContainer from "src/ScrollContainer.svelte";
 
   export let data: CoffeeData;
-  export let id: number
+  export let id: number;
   const { blend_name, origin, variety, intensifier, notes } = data;
 
   onMount(() => {
-    document.getElementById(`card-${id}`)?.scrollIntoView({ behavior: "smooth" })
-  })
+    document
+      .getElementById(`card-${id}`)
+      ?.scrollIntoView({ behavior: "smooth" });
+  });
 </script>
 
 <div class="card" id={`card-${id}`}>
   <div class="intensifier">{intensifier}</div>
-  <img
-    class="image"
-    src={`${IMG_URL}?lock=${id}`}
-    alt={blend_name}
-  />
+  <img class="image" src={`${IMG_URL}?lock=${id}`} alt={blend_name} />
   <div class="content">
     <div class="origin">{origin}</div>
     <div class="name">{blend_name}</div>
@@ -46,7 +44,7 @@
     <ScrollContainer cssClass="pills-wrapper">
       <div class="pills">
         {#each notes.split(", ") as item}
-          <Pill name={item}/>
+          <Pill name={item} />
         {/each}
       </div>
     </ScrollContainer>
@@ -78,7 +76,7 @@
   .content {
     background-color: #fff;
     padding: 16px;
-  } 
+  }
 
   .image {
     display: block;
@@ -93,7 +91,7 @@
   }
 
   :global(.pills-wrapper) {
-    height: 23px;
+    height: 22px;
     margin-right: -16px;
     margin-bottom: -2px;
   }

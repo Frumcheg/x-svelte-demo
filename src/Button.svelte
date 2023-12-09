@@ -3,7 +3,7 @@
   export let loading: boolean;
 </script>
 
-<button class="button" class:loading={loading} on:click={onclick} disabled={loading}/>
+<button class="button" class:loading on:click={onclick} disabled={loading} />
 
 <style lang="less">
   .button {
@@ -16,7 +16,7 @@
     cursor: pointer;
 
     &::before {
-      content: '+';
+      content: "+";
       line-height: 32px;
       font-size: 32px;
       margin-top: -7px;
@@ -30,7 +30,9 @@
 
     &:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #ef4724;
+      box-shadow:
+        0 0 0 2px #fff,
+        0 0 0 4px #ef4724;
     }
   }
 
