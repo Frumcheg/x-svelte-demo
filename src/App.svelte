@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { initIdleTracker } from "src/activityTracker.svelte";
-  import CoffeeCard, { CoffeeData, nextId } from "src/CoffeeCard.svelte";
+  import CoffeeCard, { CoffeeData } from "src/CoffeeCard.svelte";
   import Button from "src/Button.svelte";
 
   type Status = "idle" | "loading" | "success" | "error";
@@ -42,7 +42,7 @@
   <h1 class="title">Get Coffee!</h1>
   <div>
     {#each data as item}
-      <CoffeeCard data={item} id={nextId()} />
+      <CoffeeCard data={item} />
     {/each}
     <Button onclick={loadItem} loading={status === "loading"} />
   </div>
