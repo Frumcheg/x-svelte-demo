@@ -7,19 +7,22 @@ const white = "#fff";
 
 const variants = [lightYellow, lightGreen, brown, gray];
 
-export function getColor(index: number): { primary: string; secondary: string } {
-  const secondary = (p: string) => p === brown ? white : black
+export function getColor(index: number): {
+  primary: string;
+  secondary: string;
+} {
+  const secondary = (p: string) => (p === brown ? white : black);
 
   if (index < variants.length) {
-    const primary = variants[index]
+    const primary = variants[index];
     return {
       primary,
       secondary: secondary(primary),
-    }
+    };
   }
-  const primary = variants[index % variants.length]
+  const primary = variants[index % variants.length];
   return {
     primary,
     secondary: secondary(primary),
-  }
+  };
 }
