@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { color } from "src/pillColor";
+  import { getColor } from "src/pillColor";
 
   export let items: string[];
 </script>
 
 <div class="pills">
-  {#each items as item}
-    {@const colors = color[item] ?? color.default}
+  {#each items as item, index}
+    {@const colors = getColor(index)}
     <span
       class="pill"
       style:background-color={colors.primary}
