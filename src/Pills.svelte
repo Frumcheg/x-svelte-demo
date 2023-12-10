@@ -1,29 +1,19 @@
 <script lang="ts">
-  export let items: string[];
-  const bgColor =
-    {
-      crisp: "#fff793",
-      coating: "#eeffde",
-      "black-tea": "#983924",
-      peanut: "#e6e6e6",
-    };
+  import { color } from "src/pillColor";
 
-  const textColor =
-    {
-      crisp: "#000",
-      coating: "#000",
-      "black-tea": "#fff",
-      peanut: "#000",
-    };
+  export let items: string[];
 </script>
 
 <div class="pills">
   {#each items as item}
-    <span class="pill" style:background-color={bgColor[item] ?? "#983924"} style:color={textColor[item] ?? "#fff"}>{item}</span>
+    {@const colors = color[item] ?? color.default}
+    <span
+      class="pill"
+      style:background-color={colors.primary}
+      style:color={colors.secondary}>{item}</span
+    >
   {/each}
 </div>
-
-
 
 <style lang="less">
   .pills {

@@ -12,13 +12,11 @@
   function loadItem() {
     if (status === "loading") return;
     status = "loading";
-    getCoffee().then(
-      (item) => {
-        data.push(item);
-        data = data;
-        status = "idle";
-      }
-    );
+    getCoffee().then((item) => {
+      data.push(item);
+      data = data;
+      status = "idle";
+    });
   }
 
   onMount(() => {

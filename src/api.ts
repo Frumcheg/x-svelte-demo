@@ -9,7 +9,7 @@ export interface CoffeeData {
 }
 
 export function getCoffee(): Promise<CoffeeData> {
-  return fetch(
-    "https://random-data-api.com/api/coffee/random_coffee"
-  ).then(res => res.json())
+  return fetch("https://random-data-api.com/api/coffee/random_coffee").then(
+    (res) => res.json(),
+  );
 }

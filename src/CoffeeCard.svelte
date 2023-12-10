@@ -18,12 +18,10 @@
 
   export let data: CoffeeData;
   const { blend_name, origin, variety, intensifier, notes, id } = data;
-  const domId = `card-${id}`
+  const domId = `card-${id}`;
 
   onMount(() => {
-    document
-      .getElementById(domId)
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(domId)?.scrollIntoView({ behavior: "smooth" });
   });
 </script>
 
@@ -34,7 +32,7 @@
     <div class="origin">{origin}</div>
     <div class="name">{blend_name}</div>
     <div class="variety">{variety}</div>
-    <Pills items={notes.split(", ")}/>
+    <Pills items={notes.split(", ")} />
   </div>
 </div>
 
