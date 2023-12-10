@@ -40,7 +40,7 @@
 
 <style lang="less">
   .card {
-    max-width: 300px;
+    max-width: 400px;
     margin: 0 auto 20px;
     position: relative;
     border-radius: 8px;
@@ -67,7 +67,8 @@
 
   .image {
     display: block;
-    max-width: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
     min-height: 300px;
   }
 
