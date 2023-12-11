@@ -14,12 +14,13 @@
     height: 48px;
     color: #fff;
     cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 
     &::before {
       content: "+";
-      line-height: 32px;
       font-size: 32px;
-      margin-top: -7px;
       display: block;
     }
 
