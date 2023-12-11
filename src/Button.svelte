@@ -3,7 +3,12 @@
   export let loading: boolean;
 </script>
 
-<button class="button" class:loading on:click={onclick} disabled={loading} />
+<button
+  class="button plus-sign"
+  class:loading
+  on:click={onclick}
+  disabled={loading}
+/>
 
 <style lang="less">
   .button {
@@ -17,12 +22,6 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-
-    &::before {
-      content: "+";
-      font-size: 32px;
-      display: block;
-    }
 
     &:hover {
       background: #d23f1e;
@@ -54,6 +53,21 @@
     }
     to {
       transform: rotate(0deg);
+    }
+  }
+
+  .plus-sign {
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      width: 2px;
+      height: 16px;
+    }
+
+    &::after {
+      transform: rotate(90deg);
     }
   }
 </style>
