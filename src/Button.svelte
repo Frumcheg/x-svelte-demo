@@ -22,6 +22,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 
     &:hover {
       background: #d23f1e;
